@@ -24,7 +24,14 @@ public class StringCalculatorTest {
     public void when_additionOfTwoNumbers_then_ShouldReturn_theSum() {
         int result = StringCalculator.add("2,3");
 
-        assertEquals("Test failed for single number addition", 5, result);
+        assertEquals("Test failed for 2 numbers addition", 5, result);
+    }
+
+    @Test
+    public void when_multipleNumbers_then_ShouldReturn_theSum() {
+        int result = StringCalculator.add("2,3,5,12");
+
+        assertEquals("Test failed for unknown/multiple numbers addition", 22, result);
     }
 
 
