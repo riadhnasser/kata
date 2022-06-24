@@ -31,7 +31,14 @@ public class StringCalculatorTest {
     public void when_multipleNumbers_then_ShouldReturn_theSum() {
         int result = StringCalculator.add("2,3,5,12");
 
-        assertEquals("Test failed for unknown/multiple numbers addition", 22, result);
+        assertEquals("Test 0 failed for unknown/multiple numbers addition", 22, result);
+    }
+
+    @Test
+    public void when_multipleDelimiterUsed_then_ShouldReturn_theSum() {
+        int result = StringCalculator.add("1\n2,3");
+
+        assertEquals("Test failed for delimiter \n ", 6, result);
     }
 
 
