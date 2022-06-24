@@ -3,9 +3,12 @@ import java.util.*;
 
 public class StringCalculator {
 
-    public static int add(String numbers) {
+    public static int add(String numbers) throws Exception {
         String delimiters = ",|\\\n";
         int result = 0;
+        // flag to check if negative values are present
+        boolean error = false;
+        List<String> negatives_values = new ArrayList<String>();
         if (numbers.length() > 0) {
             String[] values;
             if (numbers.startsWith("//")) {
@@ -15,11 +18,20 @@ public class StringCalculator {
                 values = numbers.split(delimiters);
             }
 
-            for(int i = 0; i < values.length; i++) {
-                result += Integer.parseInt(values[i]);
+            for(String value: values) {
+                if (Integer.parseInt(value) >= 0 ) {
+                    result += Integer.parseInt(value);
+                } else {
+                    negatives_values.add(value);
+                    error = true;
+                }
             }
         }
-        return result;
+        if (error) {
+            throw new Exception("negatives not allowed " + negatives_values);
+        } else {
+            return result;
+        }
     }
 
     public static String getDelimiterFromFirstLine(String text) {
