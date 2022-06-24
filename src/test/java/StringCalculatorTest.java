@@ -41,5 +41,33 @@ public class StringCalculatorTest {
         assertEquals("Test failed for delimiter \n ", 6, result);
     }
 
+    @Test
+    public void when_delimiterLinePresent_then_ShouldReturn_delimiter() {
+        String result = StringCalculator.getDelimiterFromFirstLine("//;\n1;2");
+
+        assertEquals("Test failed for retrieving delimiter from text ", ";", result);
+    }
+
+    @Test
+    public void when_delimiterMultipleCharactersLinePresent_then_ShouldReturn_delimiter() {
+        String result = StringCalculator.getDelimiterFromFirstLine("//;;\n1;2");
+
+        assertEquals("Test failed for retrieving delimiter from text ", ";;", result);
+    }
+
+    @Test
+    public void when_delimiterDelimiterIsProvided_then_ShouldReturn_sumBasedOnDelimiter() {
+        int result = StringCalculator.add("//;\n1;2");
+
+        assertEquals("Test failed for addition using provided delimiter ; ", 3, result);
+    }
+
+    @Test
+    public void when_delimiterDelimiterIsProvidedAndBigNumbers_then_ShouldReturn_sumBasedOnDelimiter() {
+        int result = StringCalculator.add("//;:\n1000;:2500");
+
+        assertEquals("Test failed for addition using provided delimiter ; ", 3500, result);
+    }
+
 
 }
